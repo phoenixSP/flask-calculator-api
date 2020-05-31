@@ -76,4 +76,4 @@ def notifyUsers(data):
 # If we're running in stand alone mode, run the application
 if __name__ == '__main__':
 #    app.run(debug=True)
-    socketio.run(app, debug = True)
+    socketio.run(app)
