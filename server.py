@@ -58,9 +58,9 @@ def getCalculation():
 #                addOperation(operation, getCalculationFunction(operation))
 #                print(history)
 #                return render_template("index.html", result= getCalculationFunction(operation))
-            result = evaluate(operation)
-            addOperation(operation, result)
-            return render_template("index.html", result= getCalculationFunction(operation))
+            res = evaluate(operation)
+            addOperation(operation, res)
+            return render_template("index.html", result= res)
         except Exception as err:
             return "Error encountered: {}".format(err)
 #        else:
@@ -74,10 +74,13 @@ def getCalculation():
 @socketio.on('/new_operation/')
 def notifyUsers(data):
     operation = data['operation']
-    result = str(getCalculationFunction(operation))
-    message = operation + ' = ' + result
-    emit('result', result)
-    emit('notification', message, broadcast = True, include_self = False)
+    try:
+        result = evaluate(operation)
+        message = operation + ' = ' + str(result)
+        emit('result', result)
+        emit('notification', message, broadcast = True, include_self = False)
+    except:
+        pass
       
 
 # If we're running in stand alone mode, run the application
