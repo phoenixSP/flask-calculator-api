@@ -3,7 +3,7 @@ flask-socketio
 gevent==1.4.0
 gevent-websocket==0.10.1
 greenlet
-gunicorn==19.4.5
+gunicorn==19.5.0
 itsdangerous==0.24
 Jinja2==2.10.3
 Werkzeug==0.16.0
